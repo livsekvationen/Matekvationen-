@@ -1,0 +1,40 @@
+
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <title>Planering</title>
+    <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+    <header><h1>Planering</h1></header>
+    <nav class="navbar">
+        <a href="index.html">Hem</a>
+        <a href="inkopslista.html">Inköpslista</a>
+        <a href="planering.html">Planering</a>
+        <a href="skafferi.html">Skafferi</a>
+    </nav>
+    <main>
+        <form id="ignoreForm2">
+            <label for="ingredients">Vad har du hemma?</label>
+            <input type="text" id="ingredients" placeholder="t.ex. morot, pasta" />
+            <button type="submit">Hämta receptförslag</button>
+        </form>
+        <div id="ignoreResult2"></div>
+    </main>
+    <script>
+    document.getElementById('ignoreForm2').onsubmit = function(e) {
+        e.preventDefault();
+        const ingr = document.getElementById('ingredients').value;
+        document.getElementById('ignoreResult2').innerHTML = `
+            <h3>Förslag baserat på: ${ingr}</h3>
+            <ul>
+                <li><b>Grönsakssoppa</b> – morot, potatis, lök. Serveras med bröd.</li>
+                <li><b>Pastagratäng</b> – pasta, grönsaker, ost. Enkel och barnvänlig.</li>
+            </ul>
+            <p><i>Tips: Börja måltiden med grönsaker för jämnare blodsocker.</i></p>
+        `;
+    }
+    </script>
+</body>
+</html>
