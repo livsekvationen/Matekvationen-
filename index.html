@@ -1,0 +1,24 @@
+
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MatEkvationen</title>
+</head>
+<body>
+    <h1>Välkommen till MatEkvationen</h1>
+    <p>Skriv in vad du har hemma:</p>
+    <input type="text" id="ingredients" placeholder="Ex: morot, linser">
+    <button onclick="getRecipe()">Få recept</button>
+    <div id="result"></div>
+
+    <script>
+        async function getRecipe() {
+            const input = document.getElementById("ingredients").value;
+            document.getElementById("result").innerText = 
+              `Här kommer ett AI-genererat recept baserat på: ${input}`;
+        }
+    </script>
+</body>
+</html>
