@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="sv">
 <head>
@@ -10,31 +9,43 @@
     <header><h1>Receptförslag</h1></header>
     <nav class="navbar">
         <a href="index.html">Hem</a>
+        <a href="skafferi.html">Skafferi</a>
         <a href="inkopslista.html">Inköpslista</a>
         <a href="planering.html">Planering</a>
-        <a href="skafferi.html">Skafferi</a>
+        <a href="preferenser.html">Preferenser</a>
     </nav>
-    <main>
-        <form id="recipeForm">
-            <label for="ingredients">Vad har du hemma?</label>
-            <input type="text" id="ingredients" placeholder="t.ex. morot, pasta" />
-            <button type="submit">Hämta receptförslag</button>
-        </form>
+    <section>
+        <h2>Ange ingredienser</h2>
+        <input type="text" id="ingredients" placeholder="t.ex. morot, pasta, linser" />
+        <button onclick="getRecipe()">Hämta receptförslag</button>
         <div id="recipeResult"></div>
-    </main>
+    </section>
     <script>
-    document.getElementById('recipeForm').onsubmit = function(e) {
-        e.preventDefault();
-        const ingr = document.getElementById('ingredients').value;
-        document.getElementById('recipeResult').innerHTML = `
-            <h3>Förslag baserat på: ${ingr}</h3>
-            <ul>
-                <li><b>Grönsakssoppa</b> – morot, potatis, lök. Serveras med bröd.</li>
-                <li><b>Pastagratäng</b> – pasta, grönsaker, ost. Enkel och barnvänlig.</li>
-            </ul>
-            <p><i>Tips: Börja måltiden med grönsaker för jämnare blodsocker.</i></p>
-        `;
-    }
+        function getRecipe() {
+            const input = document.getElementById("ingredients").value;
+            const result = document.getElementById("recipeResult");
+            result.innerHTML = "Laddar AI-förslag...";
+            setTimeout(() => {
+                result.innerHTML = `
+                    <h3>Förslag baserat på: ${input}</h3>
+                    <ul>
+                        <li><b>Grönsakslinsgryta</b> – Morot, lök och linser med en extra grönsak (broccoli) för näring. Blodsockertips: Ät långsamt och börja med grönsakerna.</li>
+                        <li><b>Pastagratäng</b> – Pasta blandas med tomater, spenat och ost, perfekt barnvänligt. Tips: Servera med en fräsch sallad för extra fibrer.</li>
+                    </ul>
+                    <button onclick="cookRecipe()">Laga detta</button>
+                `;
+            }, 1000);
+        }
+        function cookRecipe() {
+            let inv = JSON.parse(localStorage.getItem('inventory')) || [];
+            // Simulera att vi behöver "morot", "lök", "linser" och "broccoli"
+            let needed = ["morot", "lök", "linser", "broccoli"];
+            let missing = needed.filter(item => !inv.includes(item));
+            let shopping = JSON.parse(localStorage.getItem('shopping')) || [];
+            shopping = shopping.concat(missing);
+            localStorage.setItem('shopping', JSON.stringify(shopping));
+            alert("Receptet lagas! Saknade ingredienser har lagts till inköpslistan.");
+        }
     </script>
 </body>
 </html>
