@@ -1,13 +1,13 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #f5f1e8; /* beige */
+    background-color: #f5f1e8;
     color: #1e1e1e;
     margin: 0;
     padding: 0;
 }
 header {
-    background-color: #2c3e50; /* mörkblå */
+    background-color: #2c3e50;
     color: white;
     padding: 1rem;
     text-align: center;
@@ -15,7 +15,7 @@ header {
 .navbar {
     display: flex;
     justify-content: space-around;
-    background-color: #8e2e40; /* vinröd */
+    background-color: #8e2e40;
     padding: 1rem 0;
 }
 .navbar a {
@@ -24,5 +24,5 @@ header {
     font-weight: bold;
 }
 .navbar a:hover {
-    color: #a2d5ab; /* jordnära grön */
+    color: #a2d5ab;
 }
